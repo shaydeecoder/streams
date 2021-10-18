@@ -1,9 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+import { signIn, signOut } from "../actions";
 
 class GoogleAuth extends React.Component {
   state = { isSignedIn: null };
 
   componentDidMount() {
+    console.log(this.props);
+
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
@@ -19,8 +23,18 @@ class GoogleAuth extends React.Component {
     });
   }
 
-  onAuthChnage = () => {
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+  // Without Redux
+  // onAuthChnage = () => {
+  //   this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+  // };
+
+  // With Redux
+  onAuthChnage = (isSignedIn) => {
+    if (isSignedIn) {
+      this.props.signIn();
+    } else {
+      this.props.signOut();
+    }
   };
 
   onSignInClick = () => {
@@ -56,4 +70,4 @@ class GoogleAuth extends React.Component {
   }
 }
 
-export default GoogleAuth;
+export default connect(null, { signIn, signOut })(GoogleAuth);
