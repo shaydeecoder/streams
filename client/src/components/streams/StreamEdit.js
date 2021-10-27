@@ -1,5 +1,23 @@
-const StreamEdit = () => {
-  return <div>StreamEdit</div>;
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchStream } from "../../actions";
+
+const StreamEdit = (props) => {
+  // console.log(props);
+  const { fetchStream, match } = props;
+
+  useEffect(() => {
+    fetchStream(match.params.id);
+  }, [fetchStream, match]);
+
+  // Gaurd clause
+  if (!props.stream) return <div>Loading...</div>;
+
+  return <div>{props.stream.title}</div>;
 };
 
-export default StreamEdit;
+const mapStateToProps = (state, ownProps) => {
+  return { stream: state.streams[ownProps.match.params.id] };
+};
+
+export default connect(mapStateToProps, { fetchStream })(StreamEdit);
