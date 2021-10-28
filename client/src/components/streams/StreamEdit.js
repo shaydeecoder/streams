@@ -13,7 +13,8 @@ const StreamEdit = (props) => {
   }, [fetchStream, match]);
 
   const onSubmit = (formValues) => {
-    console.log(formValues);
+    // console.log(formValues);
+    props.editStream(match.params.id, formValues);
   };
 
   // Gaurd clause
