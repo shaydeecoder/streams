@@ -11,18 +11,6 @@
       "id": 2
     },
     {
-      "title": "I Created This Stream",
-      "description": "This change was made by a PATCH request",
-      "userId": "110242445103207222343",
-      "id": 3
-    },
-    {
-      "title": "Programmatic Navigation",
-      "description": "You should not see this on the form page!!!",
-      "userId": "110242445103207222343",
-      "id": 4
-    },
-    {
       "title": "Me Streaming Component Reuse!",
       "description": "This stream is about refactoring.",
       "id": 5

@@ -7,7 +7,7 @@ class StreamCreate extends React.Component {
   onSubmit = (formValues) => {
     // console.log(formValues);
     // console.log(this.props);
-    this.props.createStream(formValues).then(() => this.props.reset());
+    this.props.createStream(formValues);
   };
 
   render() {
