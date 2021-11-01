@@ -7,10 +7,24 @@ const StreamShow = (props) => {
   const videoRef = useRef();
 
   const { fetchStream, match } = props;
+  const { id } = match.params;
 
   useEffect(() => {
-    fetchStream(match.params.id);
-  }, [fetchStream, match]);
+    fetchStream(id);
+  }, [fetchStream, id]);
+
+  let player;
+  useEffect(() => {
+    if (player || !props.stream) return;
+
+    player = flv.createPlayer({
+      type: "flv",
+      url: `http://localhost:8000/live/${id}.flv`,
+    });
+
+    player.attachMediaElement(videoRef.current);
+    player.load();
+  });
 
   if (!props.stream) return <div>Loading...</div>;
 
