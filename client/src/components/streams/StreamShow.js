@@ -24,6 +24,10 @@ const StreamShow = (props) => {
 
     player.attachMediaElement(videoRef.current);
     player.load();
+
+    return () => {
+      player.destroy();
+    };
   });
 
   if (!props.stream) return <div>Loading...</div>;
